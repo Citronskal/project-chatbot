@@ -61,6 +61,10 @@ const showFoodOptions = () => {
     "What would you like to order? Please choose your tea base:",
     "bot"
   );
+  document.getElementById("user-input").classList.add("hidden");
+  document.querySelector(".send-btn").classList.add("hidden");
+  const buttonTea = document.createElement("div");
+  buttonTea.classList.add("button-tea");
 
   const greenTea = document.createElement("button");
   greenTea.textContent = "Green Tea";
@@ -74,11 +78,12 @@ const showFoodOptions = () => {
   milkTea.textContent = "Milk Tea";
   milkTea.addEventListener("click", () => handleFoodChoice("Oolong Tea"));
 
-  chat - form.appendChild(greenTea);
-  chat - form.appendChild(blackTea);
-  chat - form.appendChild(milkTea);
 
-  // document.getElementById("user-input").style.display = showFoodOptions;
+  buttonTea.appendChild(greenTea);
+  buttonTea.appendChild(blackTea);
+  buttonTea.appendChild(milkTea);
+
+  form.appendChild(buttonTea);
 };
 
 const handleFoodChoice = (choice) => {
