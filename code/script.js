@@ -1,6 +1,15 @@
 // DOM selectors (variables that point to selected DOM elements) goes here 👇
 const chat = document.getElementById("chat");
 const form = document.getElementById("chat-form");
+const buttonTea = document.createElement("div");
+const greenTea = document.createElement("button");
+const milkTea = document.createElement("button");
+const blackTea = document.createElement("button");
+const jelly = document.createElement("button");
+const cream = document.createElement("button");
+const boba = document.createElement("button");
+let teaChoice = "";
+let topping = "";
 
 // Functions goes here 👇
 
@@ -63,21 +72,16 @@ const showFoodOptions = () => {
   );
   document.getElementById("user-input").classList.add("hidden");
   document.querySelector(".send-btn").classList.add("hidden");
-  const buttonTea = document.createElement("div");
   buttonTea.classList.add("button-tea");
 
-  const greenTea = document.createElement("button");
   greenTea.textContent = "Green Tea";
   greenTea.addEventListener("click", () => handleFoodChoice("Green Tea"));
 
-  const blackTea = document.createElement("button");
   blackTea.textContent = "Black Tea";
   blackTea.addEventListener("click", () => handleFoodChoice("Black Tea"));
 
-  const milkTea = document.createElement("button");
   milkTea.textContent = "Milk Tea";
-  milkTea.addEventListener("click", () => handleFoodChoice("Oolong Tea"));
-
+  milkTea.addEventListener("click", () => handleFoodChoice("Milk Tea"));
 
   buttonTea.appendChild(greenTea);
   buttonTea.appendChild(blackTea);
@@ -87,7 +91,29 @@ const showFoodOptions = () => {
 };
 
 const handleFoodChoice = (choice) => {
-  showMessage(`You chose ${choice}.`, "user");
+  showMessage(` ${choice}.`, "user");
+  showMessage(`You chose ${choice}.`, "bot");
+  teaChoice = choice;
+  console.log(teaChoice);
+
+  buttonTea.removeChild(blackTea);
+  buttonTea.removeChild(milkTea);
+  buttonTea.removeChild(greenTea);
+  //  form.buttonTea.removeChild(buttonTea);
+  setTimeout(() => toppingChoice(name), 1000);
+};
+
+const handleToppingChoice = (choice) => {
+  showMessage(`${choice}.`, "user");
+  showMessage(`You chose ${choice}.`, "bot");
+  topping = choice;
+  console.log(topping);
+
+  buttonTea.removeChild(boba);
+  buttonTea.removeChild(cream);
+  buttonTea.removeChild(jelly);
+  //  form.buttonTea.removeChild(buttonTea);
+  setTimeout(() => checkOut(name), 1000);
 };
 
 // Eventlisteners goes here 👇
@@ -100,3 +126,40 @@ form.addEventListener("submit", handleInput);
 // 1.) the function we want to delay, and 2.) the delay in milliseconds
 // This means the greeting function will be called one second after the website is loaded.
 setTimeout(greetUser, 1000);
+
+const toppingChoice = () => {
+  showMessage(`Please choose your toppings:`, "bot");
+
+  document.getElementById("user-input").classList.add("hidden");
+  document.querySelector(".send-btn").classList.add("hidden");
+  buttonTea.classList.add("button-tea");
+
+  boba.textContent = "Boba";
+  boba.addEventListener("click", () => handleToppingChoice("Boba"));
+
+  jelly.textContent = "Jelly";
+  jelly.addEventListener("click", () => handleToppingChoice("Jelly"));
+
+  cream.textContent = "Cream";
+  cream.addEventListener("click", () => handleToppingChoice("Cream"));
+
+  buttonTea.appendChild(boba);
+  buttonTea.appendChild(jelly);
+  buttonTea.appendChild(cream);
+
+  form.appendChild(buttonTea);
+};
+
+
+const checkOut = (choice) => {
+  showMessage(`You chose ${teaChoice} with ${topping}`, "bot");
+  showMessage(`Are you happy with your choice?` , "bot")
+  
+  console.log(topping);
+  console.log(teaChoice);
+
+  //  form.buttonTea.removeChild(buttonTea);
+ 
+};
+
+
