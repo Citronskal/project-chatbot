@@ -8,6 +8,8 @@ const blackTea = document.createElement("button");
 const jelly = document.createElement("button");
 const cream = document.createElement("button");
 const boba = document.createElement("button");
+const yes = document.createElement("button");
+const no = document.createElement("button");
 let teaChoice = "";
 let topping = "";
 
@@ -99,7 +101,6 @@ const handleFoodChoice = (choice) => {
   buttonTea.removeChild(blackTea);
   buttonTea.removeChild(milkTea);
   buttonTea.removeChild(greenTea);
-  //  form.buttonTea.removeChild(buttonTea);
   setTimeout(() => toppingChoice(name), 1000);
 };
 
@@ -112,19 +113,12 @@ const handleToppingChoice = (choice) => {
   buttonTea.removeChild(boba);
   buttonTea.removeChild(cream);
   buttonTea.removeChild(jelly);
-  //  form.buttonTea.removeChild(buttonTea);
   setTimeout(() => checkOut(name), 1000);
 };
 
 // Eventlisteners goes here 👇
 form.addEventListener("submit", handleInput);
 
-// Here we invoke the first function to get the chatbot to ask the first question when
-// the website is loaded. Normally we invoke functions like this: greeting()
-// To add a little delay to it, we can wrap it in a setTimeout (a built in JavaScript function):
-// and pass along two arguments:
-// 1.) the function we want to delay, and 2.) the delay in milliseconds
-// This means the greeting function will be called one second after the website is loaded.
 setTimeout(greetUser, 1000);
 
 const toppingChoice = () => {
@@ -150,17 +144,30 @@ const toppingChoice = () => {
   form.appendChild(buttonTea);
 };
 
-
 const checkOut = (choice) => {
   showMessage(`You chose ${teaChoice} with ${topping}`, "bot");
-  showMessage(`Are you happy with your choice?` , "bot")
-  
+  showMessage(`Are you happy with your choice?`, "bot");
+  yes.textContent = "Yes";
+  yes.addEventListener("click", () => confirm("Yes"));
+
+  no.textContent = "No";
+  no.addEventListener("click", () => confirm("No"));
+  buttonTea.appendChild(yes);
+  buttonTea.appendChild(no);
+
   console.log(topping);
   console.log(teaChoice);
-
-  //  form.buttonTea.removeChild(buttonTea);
- 
 };
 
-
-
+const confirm = (choice) => {
+  buttonTea.removeChild(yes);
+  buttonTea.removeChild(no);
+  if (choice == "Yes") {
+    showMessage(`Yes`, "user");
+    showMessage(`Amazing! Your drink will be ready in 5 minutes`, "bot");
+  } else if (choice == "No") {
+    showMessage(`No`, "user");
+    showMessage(`ok see you never`, "bot");
+  }
+  form.removeEventListener("submit", handleInput);
+};
