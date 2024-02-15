@@ -90,10 +90,12 @@ const showFoodOptions = () => {
   buttonTea.appendChild(milkTea);
 
   form.appendChild(buttonTea);
+  setTimeout(handleInput, 1000);
+  setTimeout(() => handleFoodChoice, 1000);
 };
 
 const handleFoodChoice = (choice) => {
-  showMessage(` ${choice}.`, "user");
+  showMessage(` ${choice}.`, "user", 1000);
   showMessage(`You chose ${choice}.`, "bot");
   teaChoice = choice;
   console.log(teaChoice);
@@ -113,6 +115,7 @@ const handleToppingChoice = (choice) => {
   buttonTea.removeChild(boba);
   buttonTea.removeChild(cream);
   buttonTea.removeChild(jelly);
+
   setTimeout(() => checkOut(name), 1000);
 };
 
@@ -142,11 +145,13 @@ const toppingChoice = () => {
   buttonTea.appendChild(cream);
 
   form.appendChild(buttonTea);
+  setTimeout(handleInput, 1000);
 };
 
 const checkOut = (choice) => {
   showMessage(`You chose ${teaChoice} with ${topping}`, "bot");
   showMessage(`Are you happy with your choice?`, "bot");
+
   yes.textContent = "Yes";
   yes.addEventListener("click", () => confirm("Yes"));
 
@@ -157,6 +162,7 @@ const checkOut = (choice) => {
 
   console.log(topping);
   console.log(teaChoice);
+  setTimeout(handleInput, 1000);
 };
 
 const confirm = (choice) => {
@@ -164,10 +170,11 @@ const confirm = (choice) => {
   buttonTea.removeChild(no);
   if (choice == "Yes") {
     showMessage(`Yes`, "user");
-    showMessage(`Amazing! Your drink will be ready in 5 minutes`, "bot");
+    showMessage(`Amazing! Your drink will be ready in 5 minutes🧋`, "bot");
   } else if (choice == "No") {
     showMessage(`No`, "user");
-    showMessage(`ok see you never`, "bot");
+    showMessage(`ok see you never🖖`, "bot");
   }
   form.removeEventListener("submit", handleInput);
+  setTimeout(handleInput, 1000);
 };
