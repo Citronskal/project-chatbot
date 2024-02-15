@@ -68,9 +68,9 @@ const handleInput = (event) => {
   setTimeout(() => showFoodOptions(name), 1000);
 };
 
-const showFoodOptions = () => {
+const showFoodOptions = (userName) => {
   showMessage(
-    "What would you like to order? Please choose your tea base:",
+    `Hello ${userName}! What would you like to order? Please choose your tea base:`,
     "bot"
   );
   document.getElementById("user-input").classList.add("hidden");
