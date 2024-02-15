@@ -50,6 +50,7 @@ const showMessage = (message, sender) => {
 const greetUser = () => {
   // Here we call the function showMessage, that we declared earlier with the argument:
   // "Hello there, what's your name?" for message, and the argument "bot" for sender
+  chat.innerHTML = "";
   showMessage("Hello there, what's your name?", "bot");
 };
 
@@ -174,6 +175,10 @@ const confirm = (choice) => {
   } else if (choice == "No") {
     showMessage(`No`, "user");
     showMessage(`ok see you never🖖`, "bot");
+    teaChoice = "";
+    topping = "";
+    setTimeout(greetUser, 1000);
+    form.addEventListener("submit", handleInput);
   }
   form.removeEventListener("submit", handleInput);
   setTimeout(handleInput, 1000);
