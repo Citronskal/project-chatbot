@@ -9,7 +9,7 @@ body {
   background-color: #32393b;
   background-image: url("Bubble\ milk\ tea\ design\ .jpeg");
   background-position: center;
-  background-repeat: repeat;
+  background-repeat: space repeat;
 }
 
 h1 {
@@ -158,4 +158,9 @@ button:hover {
 .button-tea {
   display: flex;
   justify-content: space-evenly;
+}
+
+#chat-form {
+  display: flex;
+  justify-content: center;
 }
